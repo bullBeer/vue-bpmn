@@ -1,0 +1,35 @@
+// vue.config.js
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
+module.exports = {
+  lintOnSave: false,
+  transpileDependencies: process.env.NODE_ENV === 'development' ? ['*'] : [], // 解决npm run serve某些node_modules依赖不能被babel编译问题
+  productionSourceMap: process.env.NODE_ENV === 'development',
+  publicPath: process.env.NODE_ENV === 'production' ? './' : '/',
+  outputDir: process.env.BASE_URL,
+  assetsDir: 'static',
+  configureWebpack: {
+    performance: {
+      hints: false
+    },
+    optimization: {
+      minimizer: [
+        new UglifyJsPlugin({
+          uglifyOptions: {
+            compress: {
+              warnings: false,
+              drop_console: true,// console
+              drop_debugger: false,
+              pure_funcs: ['console.log']// 移除console
+            }
+          }
+        })
+      ]
+    }
+  },
+  devServer: {
+    overlay: {
+      warnings: false,
+      errors: false
+    }
+  }
+}
