@@ -31365,8 +31365,6 @@
 
 		var entry = this._getEntry(entryId);
 		
-		// 源码拓展修改
-		console.log('entryId', entryId)
 
 	  if (entry.action) {
 	    return entry.action.call(null, event, entry);
@@ -31433,7 +31431,7 @@
 
 	  // Event handler
 	  delegateEvents.bind(container, '.entry' ,'click', function(event) {
-	    self.trigger(event);
+			self.trigger(event);
 	  });
 
 	  this._updateScale(container);

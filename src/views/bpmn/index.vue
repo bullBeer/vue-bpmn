@@ -204,8 +204,8 @@ export default {
       });
       const eventBus = this.bpmnModel.get('eventBus');
       // 事件监听
-      eventBus.on('searchPad.selected', e => {
-        console.log('searchPad.selected: ',e)
+      eventBus.on('shape.changed', e => {
+        console.log('shape.changed ',e)
       })
       // 点击元素|自动选中
       eventBus.on(['element.click', 'autoPlace.end'], evt => {
